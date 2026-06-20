@@ -1,8 +1,8 @@
 import { forwardRef, type ReactNode } from 'react';
 import { Button, type ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// Import SCSS module to make CSS custom properties available globally
-import './appButton.module.scss';
+// Import SCSS to make CSS custom properties available globally
+import './appButton.scss';
 
 export type AppButtonVariant = 'primary' | 'secondary' | 'outline';
 

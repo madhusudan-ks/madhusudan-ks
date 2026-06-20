@@ -1,11 +1,10 @@
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Link, 
-  TextField, 
-  Divider, 
-  IconButton 
+import {
+  Box,
+  Container,
+  Typography,
+  Link,
+  Divider,
+  IconButton
 } from '@mui/material';
 import { useState, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
@@ -89,10 +88,10 @@ export default function AppFooter() {
       // Check if footer is already in viewport
       const checkAndAnimate = () => {
         if (!footerRef.current) return;
-        
+
         const rect = footerRef.current.getBoundingClientRect();
         const isInView = rect.top < window.innerHeight * 0.95;
-        
+
         if (isInView) {
           // Footer is already visible, play animation immediately
           playRevealAnimation();
@@ -150,20 +149,20 @@ export default function AppFooter() {
   return (
     <Box component="footer" ref={footerRef} className={styles.footer}>
       <Container maxWidth="lg" className={styles.container}>
-        {/* Logo + brand */}
-        <Box ref={logoSectionRef} className={styles.logoSection}>
-          <img
-            src={import.meta.env.VITE_API_TITLE_LOGO_URL}
-            alt="App Logo"
-            className={styles.logo}
-          />
-          <Typography variant="h6" className={styles.brandTitle}>
-            DevSpace
-          </Typography>
-        </Box>
-
         {/* Main section */}
         <Box className={styles.mainSection}>
+          {/* Brand Section */}
+          <Box ref={logoSectionRef} className={styles.brandColumn}>
+            <img
+              src={import.meta.env.VITE_API_TITLE_LOGO_URL}
+              alt="App Logo"
+              className={styles.logo}
+            />
+            <Typography className={styles.brandTagline}>
+              Where developers connect, collaborate, and share insights on modern web technologies.
+            </Typography>
+          </Box>
+
           {/* Products */}
           <Box ref={setSectionRef(0)} className={styles.section}>
             <Typography variant="subtitle1" className={styles.sectionTitle}>
@@ -175,6 +174,8 @@ export default function AppFooter() {
                 href="#"
                 onClick={handleComingSoon}
                 className={styles.sectionLink}
+                underline="none"
+                variant="body2"
               >
                 {item}
               </Link>
@@ -192,6 +193,8 @@ export default function AppFooter() {
                 href="#"
                 onClick={handleComingSoon}
                 className={styles.sectionLink}
+                underline="none"
+                variant="body2"
               >
                 {item}
               </Link>
@@ -209,6 +212,8 @@ export default function AppFooter() {
                 href="#"
                 onClick={handleComingSoon}
                 className={styles.sectionLink}
+                underline="none"
+                variant="body2"
               >
                 {item}
               </Link>
@@ -220,39 +225,16 @@ export default function AppFooter() {
             <Typography variant="subtitle1" className={styles.sectionTitle}>
               Subscribe
             </Typography>
-            <Typography variant="body2" className={styles.subscribeDescription}>
+            <Typography className={styles.subscribeDescription}>
               Stay updated with our latest offers and news.
             </Typography>
             <Box className={styles.subscribeForm}>
-              <TextField
-                size="small"
+              <input
+                type="email"
                 placeholder="Enter your email"
-                variant="outlined"
-                fullWidth
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={styles.textField}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    backgroundColor: 'var(--color-surface)',
-                    '& fieldset': {
-                      borderColor: 'rgba(17, 45, 78, 0.3)',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'rgba(17, 45, 78, 0.5)',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'var(--color-accent)',
-                    },
-                  },
-                  '& .MuiInputBase-input': {
-                    color: 'var(--color-text)',
-                    '&::placeholder': {
-                      color: 'rgba(17, 45, 78, 0.5)',
-                      opacity: 1,
-                    },
-                  },
-                }}
+                className={styles.emailInput}
               />
               <AppButton
                 variant="primary"
