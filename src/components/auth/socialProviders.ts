@@ -21,23 +21,8 @@ export const socialProviders: SocialProvider[] = [
         icon: "logos:google-icon",
     },
     {
-        id: id.FACEBOOK,
-        label: "Continue with Facebook",
-        icon: "logos:facebook",
-    },
-    {
-        id: id.MICROSOFT,
-        label: "Continue with Microsoft",
-        icon: "logos:microsoft-icon",
-    },
-    {
         id: id.GITHUB,
         label: "Continue with Github",
         icon: "mdi:github",
-    },
-    {
-        id: id.LINKEDIN,
-        label: "Continue with LinkedIn",
-        icon: "logos:linkedin-icon",
-    },
+    }
 ];
