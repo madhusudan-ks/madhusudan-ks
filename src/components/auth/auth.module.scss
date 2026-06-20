@@ -2,7 +2,12 @@
 @use 'sass:color';
 
 .container {
-    min-height: 100vh;
+    min-height: calc(100vh - 380px);
+    
+    @media (max-height: 880px) {
+        min-height: 500px;
+    }
+
     background: radial-gradient(circle at 50% 50%, $color-background 0%, color.mix($color-background, $color-secondary, 65%) 100%);
     position: relative;
     overflow: hidden;

@@ -36,6 +36,7 @@ const AccountSection = () => {
 
   const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || "Guest";
   const firstLetter = displayName.charAt(0).toUpperCase() || "?";
+  const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
 
   if (isMobile) {
     // Small screen → Accordion inside Drawer
@@ -43,7 +44,7 @@ const AccountSection = () => {
       <Accordion sx={{ mt: "auto", boxShadow: "none" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Avatar sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
+            <Avatar src={avatarUrl} sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
             <Typography variant="subtitle1">{displayName}</Typography>
           </Box>
         </AccordionSummary>
@@ -78,7 +79,7 @@ const AccountSection = () => {
   return (
     <Box>
       <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
-        <Avatar sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
+        <Avatar src={avatarUrl} sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
         <MenuItem onClick={() => setAnchorEl(null)}>

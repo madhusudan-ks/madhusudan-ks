@@ -16,11 +16,27 @@ import { supabase } from "../../config/auth/supabaseClient";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
+const WELCOME_MESSAGES = [
+    "Welcome Back",
+    "Glad to See You",
+    "Hello Again",
+    "Welcome Home",
+    "Nice to See You",
+    "Good to See You Again",
+    "Great to Have You Back",
+    "Ready to Dive In?",
+    "Wonderful to See You"
+];
+
 const Auth: React.FC = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [open, setOpen] = useState(true);
+    const [welcomeMessage] = useState(() => {
+        const randomIndex = Math.floor(Math.random() * WELCOME_MESSAGES.length);
+        return WELCOME_MESSAGES[randomIndex];
+    });
 
     const from = (location.state as any)?.from?.pathname || "/";
 
@@ -138,7 +154,7 @@ const Auth: React.FC = () => {
 
     const handleSocialLogin = async (provider: SocialProvider["id"]) => {
         switch (provider) {
-            case id.GOOGLE:
+            case id.GOOGLE: {
                 const { error } = await supabase.auth.signInWithOAuth({
                     provider: id.GOOGLE,
                     options: {
@@ -150,18 +166,20 @@ const Auth: React.FC = () => {
                     console.error("Login error:", error.message);
                 }
                 break;
-            case id.FACEBOOK:
-                console.log("Login with Facebook");
+            }
+            case id.GITHUB: {
+                const { error } = await supabase.auth.signInWithOAuth({
+                    provider: id.GITHUB,
+                    options: {
+                        redirectTo: window.location.origin
+                    }
+                });
+
+                if (error) {
+                    console.error("Login error:", error.message);
+                }
                 break;
-            case id.MICROSOFT:
-                console.log("Login with Microsoft");
-                break;
-            case id.GITHUB:
-                console.log("Login with Github");
-                break;
-            case id.LINKEDIN:
-                console.log("Login with LinkedIn");
-                break;
+            }
             default: {
                 console.log(provider);
             }
@@ -182,7 +200,7 @@ const Auth: React.FC = () => {
                     variant="h3"
                     className={styles.title}
                 >
-                    Welcome Back
+                    {welcomeMessage}
                 </Typography>
 
                 <Typography
