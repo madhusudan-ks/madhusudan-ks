@@ -13,9 +13,22 @@ import gsap from "gsap";
 import styles from "./auth.module.scss";
 import { id, socialProviders, type SocialProvider } from "./socialProviders";
 import { supabase } from "../../config/auth/supabaseClient";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Auth: React.FC = () => {
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [open, setOpen] = useState(true);
+
+    const from = (location.state as any)?.from?.pathname || "/";
+
+    React.useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    }, [user, navigate, from]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -127,7 +140,10 @@ const Auth: React.FC = () => {
         switch (provider) {
             case id.GOOGLE:
                 const { error } = await supabase.auth.signInWithOAuth({
-                    provider: id.GOOGLE
+                    provider: id.GOOGLE,
+                    options: {
+                        redirectTo: window.location.origin
+                    }
                 });
 
                 if (error) {

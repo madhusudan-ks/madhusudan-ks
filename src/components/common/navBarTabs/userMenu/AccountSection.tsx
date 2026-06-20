@@ -19,19 +19,23 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
-//import { useAppSelector } from "../../../../app/hooks";
 import { useState } from "react";
+import { useAuth } from "../../../../context/AuthContext";
 
 const AccountSection = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const { user, signOut } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleLogout = async () => {
+    setAnchorEl(null);
+    await signOut();
   };
 
-  //const firstLetter = user?.name?.charAt(0).toUpperCase() || "?";
+  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || "Guest";
+  const firstLetter = displayName.charAt(0).toUpperCase() || "?";
 
   if (isMobile) {
     // Small screen → Accordion inside Drawer
@@ -39,8 +43,8 @@ const AccountSection = () => {
       <Accordion sx={{ mt: "auto", boxShadow: "none" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Avatar sx={{ width: 32, height: 32 }}>{"M"}</Avatar>
-            <Typography variant="subtitle1">{"Guest"}</Typography>
+            <Avatar sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
+            <Typography variant="subtitle1">{displayName}</Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -74,14 +78,14 @@ const AccountSection = () => {
   return (
     <Box>
       <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
-        <Avatar sx={{ width: 32, height: 32 }}>{"M"}</Avatar>
+        <Avatar sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
-        <MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>
           <PersonIcon fontSize="small" style={{ marginRight: 8 }} />
           Profile
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>
           <Settings fontSize="small" style={{ marginRight: 8 }} />
           Settings
         </MenuItem>
