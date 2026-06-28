@@ -3,7 +3,6 @@ import {
   AccordionSummary,
   AccordionDetails,
   Avatar,
-  Box,
   Divider,
   List,
   ListItemButton,
@@ -12,43 +11,90 @@ import {
   Typography,
   Menu,
   MenuItem,
-  IconButton,
+  Box,
   useMediaQuery,
+  Tooltip,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAppAuth } from "../../../hooks/useAppAuth";
 
+/**
+ * Modern user account profile dropdown/accordion inside topbar and drawer.
+ */
 const AccountSection = () => {
+  const { signOut, user } = useAppAuth();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const { user, signOut } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleLogout = async () => {
-    setAnchorEl(null);
-    await signOut();
+    try {
+      await signOut();
+    } catch {
+      // ignore and still force logout
+    }
   };
 
-  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || "Guest";
-  const firstLetter = displayName.charAt(0).toUpperCase() || "?";
-  const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
+  const firstLetter = user?.email?.charAt(0).toUpperCase() || "?";
 
   if (isMobile) {
     // Small screen → Accordion inside Drawer
     return (
-      <Accordion sx={{ mt: "auto", boxShadow: "none" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Avatar src={avatarUrl} sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
-            <Typography variant="subtitle1">{displayName}</Typography>
+      <Accordion sx={{ mt: "auto", boxShadow: "none", width: "100%", overflow: "hidden" }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon sx={{ color: "#000000" }} />}
+          sx={{
+            minWidth: 0,
+            width: "100%",
+            "& .MuiAccordionSummary-content": { minWidth: 0 },
+            "&:hover": {
+              backgroundColor: "rgba(63, 114, 175, 0.12)",
+            }
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, minWidth: 0, width: "100%" }}>
+            <Avatar src={user?.avatarUrl} sx={{ width: 32, height: 32, bgcolor: "#3F72AF", flexShrink: 0 }}>
+              {firstLetter}
+            </Avatar>
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", minWidth: 0, flexGrow: 1 }}>
+              <Tooltip title={user?.name || "Guest"} placement="top-start" enterDelay={500}>
+                <Typography
+                  noWrap
+                  variant="subtitle2"
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: "0.8rem",
+                    color: "#000000",
+                    lineHeight: 1.2,
+                    width: "100%",
+                  }}
+                >
+                  {user?.name || "Guest"}
+                </Typography>
+              </Tooltip>
+              <Tooltip title={user?.email || ""} placement="top-start" enterDelay={500}>
+                <Typography
+                  noWrap
+                  variant="caption"
+                  sx={{
+                    fontSize: "0.68rem",
+                    color: "#000000",
+                    opacity: 0.6,
+                    width: "100%",
+                  }}
+                >
+                  {user?.email || ""}
+                </Typography>
+              </Tooltip>
+            </Box>
           </Box>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ px: 1 }}>
           <List dense>
             <ListItemButton>
               <ListItemIcon>
@@ -75,18 +121,97 @@ const AccountSection = () => {
     );
   }
 
-  // Large screen → Dropdown menu
+  // Large screen → Dropdown menu button
   return (
-    <Box>
-      <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
-        <Avatar src={avatarUrl} sx={{ width: 32, height: 32 }}>{firstLetter}</Avatar>
-      </IconButton>
-      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
-        <MenuItem onClick={() => setAnchorEl(null)}>
+    <Box sx={{ minWidth: 0 }}>
+      <Box
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          cursor: "pointer",
+          px: 1.5,
+          height: 36,
+          minWidth: 0,
+          border: "none",
+          borderRadius: "999px",
+          backgroundColor: "transparent",
+          transition: "all 0.15s ease",
+          "&:hover": {
+            backgroundColor: "rgba(63, 114, 175, 0.12)",
+          }
+        }}
+      >
+        <Avatar src={user?.avatarUrl} sx={{ width: 28, height: 28, bgcolor: "#3F72AF", flexShrink: 0 }}>
+          {firstLetter}
+        </Avatar>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", minWidth: 0 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, minWidth: 0, maxWidth: { xs: 80, sm: 120, md: 150 } }}>
+            <Tooltip title={user?.name || "Guest"} placement="bottom-start" enterDelay={500}>
+              <Typography
+                noWrap
+                variant="subtitle2"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: "0.75rem",
+                  color: "#000000",
+                  lineHeight: 1.1,
+                  width: "100%",
+                }}
+              >
+                {user?.name || "Guest"}
+              </Typography>
+            </Tooltip>
+            <ExpandMoreIcon sx={{ fontSize: "1rem", color: "#000000", opacity: 0.7, flexShrink: 0 }} />
+          </Box>
+          <Tooltip title={user?.email || ""} placement="bottom-start" enterDelay={500}>
+            <Typography
+              noWrap
+              variant="caption"
+              sx={{
+                fontSize: "0.62rem",
+                color: "#000000",
+                opacity: 0.6,
+                width: "100%",
+                maxWidth: { xs: 80, sm: 110, md: 130 },
+              }}
+            >
+              {user?.email || ""}
+            </Typography>
+          </Tooltip>
+        </Box>
+      </Box>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              mt: 1,
+              minWidth: 150,
+              boxShadow: "var(--shadow)",
+              border: "none",
+              borderRadius: "8px",
+              backgroundColor: "var(--bg)",
+            },
+          },
+        }}
+      >
+        <MenuItem>
           <PersonIcon fontSize="small" style={{ marginRight: 8 }} />
           Profile
         </MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>
+        <MenuItem>
           <Settings fontSize="small" style={{ marginRight: 8 }} />
           Settings
         </MenuItem>
@@ -101,3 +226,5 @@ const AccountSection = () => {
 };
 
 export default AccountSection;
+
+
