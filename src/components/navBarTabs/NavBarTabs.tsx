@@ -5,6 +5,7 @@ import {
   IconButton,
   useMediaQuery,
   Drawer,
+  Container,
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { tabsData } from "./TabsData.ts";
@@ -88,10 +89,12 @@ const NavBarTabs = () => {
   return (
     <Box>
       <AppBar position="static" className={styles.appbar}>
-        <Toolbar className={styles.toolbar}>
-          <AppTitle />
-          {isMobile ? renderDrawer() : renderTabs()}
-        </Toolbar>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters className={styles.toolbar}>
+            <AppTitle />
+            {isMobile ? renderDrawer() : renderTabs()}
+          </Toolbar>
+        </Container>
       </AppBar>
     </Box>
   );
