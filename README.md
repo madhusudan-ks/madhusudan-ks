@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Madhusudan K S</h1>
 <h3 align="center">🚀 Software Engineer | Full-Stack | React - Java - SQL</h3>
 
-Portfolio(devspace): [https://madhusudan./](https://madhusudan-ks.pages.dev/)
+Portfolio(devspace): https://madhusudan./](https://madhusudan-ks.pages.dev/
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=madhusudan-ks&label=Profile%20Views&color=0e75b6&style=flat" alt="madhusudan-ks" />
