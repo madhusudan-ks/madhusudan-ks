@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Madhusudan K S</h1>
 <h3 align="center">🚀 Software Engineer | Full-Stack | React - Java - SQL</h3>
 
-Portfolio(devspace): [https://madhusudan./](https://madhusudan-ks.pages.dev/
+Portfolio(devspace): [https://madhusudan-ks.pages.dev]
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=madhusudan-ks&label=Profile%20Views&color=0e75b6&style=flat" alt="madhusudan-ks" />
@@ -36,7 +36,7 @@ Portfolio(devspace): [https://madhusudan./](https://madhusudan-ks.pages.dev/
 - 🧠 Exploring:  
   &nbsp;&nbsp;&nbsp;&nbsp;🔹 Microservices Architecture  
   &nbsp;&nbsp;&nbsp;&nbsp;🔹 Scalable System Design  
-- 📫 Reach me: [madhusudan.ks1712@gmail.com](mailto:madhusudan.ks1712@gmail.com)
+- 📫 Reach me: [madhusudan.ks.work@gmail.com](mailto:madhusudan.ks.work@gmail.com)
 
 ---
 
@@ -59,7 +59,7 @@ Portfolio(devspace): [https://madhusudan./](https://madhusudan-ks.pages.dev/
 
 ### 📊 GitHub Stats
 <p align="left">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Madhusudan1712&theme=tokyonight" alt="streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=madhusudan-ks&theme=tokyonight" alt="streak" />
 </p>
 
 ---
@@ -70,14 +70,14 @@ Portfolio(devspace): [https://madhusudan./](https://madhusudan-ks.pages.dev/
 - ☁️ **AWS S3 File Manager** – .NET Core integration with AWS SDK for cloud file operations  
 - 💻 **Dynamic Card Renderer** – Built using React + Material UI with responsive layouts
 
-> Visit my [repositories](https://github.com/Madhusudan-ks?tab=repositories) for more!
+> Visit my [repositories](https://github.com/madhusudan-ks?tab=repositories) for more!
 
 ---
 
 ### 🤝 Let’s Connect
 
-- 📧 Email: [madhusudan.ks1712@gmail.com](mailto:madhusudan.ks1712@gmail.com)
-- 💼 LinkedIn: https://www.linkedin.com/in/madhusudan-ks1712/
+- 📧 Email: [madhusudan.ks1712@gmail.com](mailto:madhusudan.ks.work@gmail.com)
+- 💼 LinkedIn: https://www.linkedin.com/in/madhusudan-k-s
 
 ---
 
