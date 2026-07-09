@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Madhusudan K S</h1>
 <h3 align="center">🚀 Software Engineer | Full-Stack | React - Java - SQL</h3>
 
-Portfolio(devspace): [https://madhusudan-ks.pages.dev]
+Portfolio(devspace): https://madhusudan-ks.pages.dev
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=madhusudan-ks&label=Profile%20Views&color=0e75b6&style=flat" alt="madhusudan-ks" />
@@ -58,8 +58,9 @@ Portfolio(devspace): [https://madhusudan-ks.pages.dev]
 ---
 
 ### 📊 GitHub Stats
+
 <p align="left">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=madhusudan-ks&theme=tokyonight" alt="streak" />
+  <img src="https://streak-stats.demolab.com?user=madhusudan-ks&theme=tokyonight" alt="GitHub Streak" />
 </p>
 
 ---
@@ -76,7 +77,7 @@ Portfolio(devspace): [https://madhusudan-ks.pages.dev]
 
 ### 🤝 Let’s Connect
 
-- 📧 Email: [madhusudan.ks1712@gmail.com](mailto:madhusudan.ks.work@gmail.com)
+- 📧 Email: [madhusudan.ks.work@gmail.com](mailto:madhusudan.ks.work@gmail.com)
 - 💼 LinkedIn: https://www.linkedin.com/in/madhusudan-k-s
 
 ---
