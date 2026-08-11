@@ -12,10 +12,10 @@
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  background-color: $color-white;
+  background-color: $color-surface;
   border-radius: $radius-md;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba($color-black, 0.08), 0 2px 8px rgba($color-black, 0.04);
+  box-shadow: 0 4px 16px color-mix(in srgb, $color-black 8%, transparent), 0 2px 8px color-mix(in srgb, $color-black 4%, transparent);
   display: flex;
   flex-direction: column;
   
@@ -29,6 +29,10 @@
 
   @include respond-to(md) {
     max-width: 100%;
+  }
+
+  &:hover .title {
+    color: $color-accent;
   }
 }
 
@@ -75,10 +79,10 @@
   bottom: 0;
   background: linear-gradient(
     180deg,
-    rgba($color-primary, 0.65) 0%,
-    rgba($color-primary, 0.5) 25%,
-    rgba($color-accent, 0.55) 60%,
-    rgba($color-accent, 0.7) 100%
+    color-mix(in srgb, $color-primary 65%, transparent) 0%,
+    color-mix(in srgb, $color-primary 50%, transparent) 25%,
+    color-mix(in srgb, $color-accent 55%, transparent) 60%,
+    color-mix(in srgb, $color-accent 70%, transparent) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -90,14 +94,14 @@
   top: $space-3;
   right: $space-3;
   background-color: $color-accent;
-  color: $color-white;
+  color: #ffffff;
   padding: $space-1 $space-3;
   border-radius: $radius-sm;
   font-weight: 600;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba($color-black, 0.2);
+  box-shadow: 0 2px 8px color-mix(in srgb, $color-black 20%, transparent);
   z-index: 2;
   
   // Hardware acceleration for GSAP hover animations
@@ -117,7 +121,7 @@
   left: 0;
   width: 100%;
   height: 35px;
-  background-color: $color-white;
+  background-color: $color-surface;
   z-index: 1;
   
   // Create smooth wave using border-radius technique
@@ -135,7 +139,7 @@
     left: -10%;
     width: 120%;
     height: 35px;
-    background: $color-white;
+    background: $color-surface;
     border-radius: 50%;
   }
   
@@ -146,14 +150,14 @@
     right: -10%;
     width: 120%;
     height: 28px;
-    background: $color-white;
+    background: $color-surface;
     border-radius: 50%;
   }
 }
 
 // Bottom section: White container
 .contentSection {
-  background-color: $color-white;
+  background-color: $color-surface;
   padding: $space-3 $space-3 $space-3;
   display: flex;
   flex-direction: column;
@@ -177,7 +181,7 @@
 // Typography
 .title {
   font-weight: 700;
-  color: $color-black;
+  color: $color-primary;
   margin-bottom: $space-2;
   letter-spacing: 0.01em;
   font-size: 1rem;
@@ -248,7 +252,7 @@
 
 .authorName {
   font-weight: 600;
-  color: $color-black;
+  color: $color-primary;
   font-size: 0.75rem;
   letter-spacing: 0.01em;
   line-height: 1.2;
@@ -311,26 +315,26 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background-color: $color-primary;
-  color: $color-white;
-  box-shadow: 0 2px 8px rgba($color-primary, 0.25);
+  color: $color-surface;
+  box-shadow: 0 2px 8px color-mix(in srgb, $color-primary 25%, transparent);
   transition: all $transition-base;
   border: none;
   min-width: auto;
 
   &:hover {
-    background-color: color.mix($color-primary, $color-black, 85%);
-    box-shadow: 0 4px 12px rgba($color-primary, 0.35);
+    background-color: color-mix(in srgb, $color-primary 85%, $color-black);
+    box-shadow: 0 4px 12px color-mix(in srgb, $color-primary 35%, transparent);
     transform: translateY(-1px);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba($color-primary, 0.3);
+    box-shadow: 0 2px 6px color-mix(in srgb, $color-primary 30%, transparent);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.3);
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-primary 30%, transparent);
   }
 
   @include respond-to(md) {
@@ -345,19 +349,19 @@
   height: 32px;
   border-radius: $radius-sm;
   background-color: $color-accent;
-  color: $color-white;
+  color: $color-surface;
   transition: all $transition-base;
-  box-shadow: 0 2px 8px rgba($color-accent, 0.25);
+  box-shadow: 0 2px 8px color-mix(in srgb, $color-accent 25%, transparent);
 
   &:hover {
-    background-color: color.mix($color-accent, $color-primary, 70%);
-    box-shadow: 0 4px 12px rgba($color-accent, 0.35);
+    background-color: color-mix(in srgb, $color-accent 70%, $color-primary);
+    box-shadow: 0 4px 12px color-mix(in srgb, $color-accent 35%, transparent);
     transform: translateY(-1px);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba($color-accent, 0.3);
+    box-shadow: 0 2px 6px color-mix(in srgb, $color-accent 30%, transparent);
   }
 
   svg {

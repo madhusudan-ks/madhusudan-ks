@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
 import SharedHero from "../../components/common/hero/SharedHero";
 import ExperienceTree from "./components/experienceTree/ExperienceTree";
-import { exampleExperienceGroups } from "./components/experienceTree/experienceData";
+import { experienceGroups } from "./components/experienceTree/experienceData";
 import type { ExperienceCompany, ExperienceItem } from "./components/experienceTree/experienceData";
 import styles from "./experiencePage.module.scss";
 
@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Calculate experience stats dynamically
 const calculateStats = () => {
-  const allRoles = exampleExperienceGroups.flatMap((g: ExperienceCompany) => g.roles);
-  const totalCompanies = exampleExperienceGroups.length;
+  const allRoles = experienceGroups.flatMap((g: ExperienceCompany) => g.roles);
+  const totalCompanies = experienceGroups.length;
   const totalRoles = allRoles.length;
 
   // Calculate total years (approximate)

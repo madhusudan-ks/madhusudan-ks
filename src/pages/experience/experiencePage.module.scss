@@ -53,7 +53,7 @@
 
   &:hover {
     box-shadow: $shadow-md;
-    border-color: rgba($color-accent, 0.3);
+    border-color: color-mix(in srgb, $color-accent 30%, transparent);
     transform: translateY(-4px);
   }
 
@@ -174,7 +174,7 @@
   background: $color-surface;
   border-radius: $radius-lg;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba($color-black, 0.06);
+  box-shadow: 0 8px 24px color-mix(in srgb, $color-black 6%, transparent);
   border: 1px solid $color-border;
   transition: box-shadow $transition-base, transform $transition-base;
   will-change: transform, opacity;
@@ -210,7 +210,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba($color-secondary, 0.5) 0%, rgba($color-secondary, 0.2) 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, $color-secondary 50%, transparent) 0%, color-mix(in srgb, $color-secondary 20%, transparent) 100%);
   border-radius: $radius-md;
   margin-bottom: $space-3;
 }

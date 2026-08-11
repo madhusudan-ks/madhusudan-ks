@@ -7,7 +7,7 @@ import {
   Drawer,
   Container,
 } from "@mui/material";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, LightMode as LightModeIcon, DarkMode as DarkModeIcon } from "@mui/icons-material";
 import { tabsData } from "./TabsData.ts";
 import { Link, useLocation } from "react-router-dom";
 import { useState, memo } from "react";
@@ -15,8 +15,10 @@ import styles from "./navBarTabs.module.scss";
 import AppTitle from "./components/appTitle/AppTitle.tsx";
 import AccountSection from "./userMenu/AccountSection.tsx";
 import { Icon } from "@iconify/react";
+import { useThemeContext } from "../../context/ThemeContext";
 
 const NavBarTabs = () => {
+  const { mode, toggleTheme } = useThemeContext();
   const location = useLocation();
   const currentPath = location.pathname === "/" ? "/stream" : location.pathname;
 
@@ -59,7 +61,11 @@ const NavBarTabs = () => {
           <Box
             className={styles["drawer-admin-button"]}
             onClick={(e) => e.stopPropagation()} // ✅ Only AccountSection clicks won't close drawer
+            sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
           >
+            <IconButton color="inherit" onClick={toggleTheme}>
+              {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
             <AccountSection />
           </Box>
         </Box>
@@ -82,6 +88,9 @@ const NavBarTabs = () => {
           </Link>
         );
       })}
+      <IconButton color="inherit" onClick={toggleTheme} sx={{ ml: 2, mr: 1 }}>
+        {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+      </IconButton>
       <AccountSection />
     </Box>
   );

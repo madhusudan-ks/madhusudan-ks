@@ -20,8 +20,7 @@ export type ExperienceCompany = {
   roles: ExperienceItem[];
 };
 
-// Example data to mirror the screenshot layout
-export const exampleExperienceGroups: ExperienceCompany[] = [
+export const experienceGroups: ExperienceCompany[] = [
   {
     id: "excelsoft",
     company: "Excelsoft Technologies Ltd.",

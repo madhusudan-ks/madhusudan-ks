@@ -53,7 +53,7 @@
 
   &:hover {
     box-shadow: $shadow-md;
-    border-color: rgba($color-accent, 0.3);
+    border-color: color-mix(in srgb, $color-accent 30%, transparent);
     transform: translateY(-4px);
   }
 

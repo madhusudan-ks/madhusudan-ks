@@ -41,20 +41,20 @@ const StyledButton = styled(Button, {
     case 'primary':
       return {
         ...baseStyles,
-        backgroundColor: `var(--app-button-primary)`,
+        backgroundColor: `var(--app-button-accent)`,
         color: `var(--app-button-white)`,
         border: '1px solid transparent',
         '&:hover': {
-          backgroundColor: `var(--app-button-primary-darken)`,
+          backgroundColor: `color-mix(in srgb, var(--app-button-accent) 85%, black)`,
         },
         '&:disabled': {
           ...baseStyles['&:disabled'],
-          backgroundColor: `rgba(var(--app-button-primary-rgb), 0.3)`,
-          color: `rgba(var(--app-button-primary-rgb), 0.6)`,
+          backgroundColor: `color-mix(in srgb, var(--app-button-text) 15%, transparent)`,
+          color: `color-mix(in srgb, var(--app-button-text) 50%, transparent)`,
         },
         '&:focus-visible': {
           outline: 'none',
-          boxShadow: `0 0 0 3px rgba(var(--app-button-primary-rgb), 0.45)`,
+          boxShadow: `0 0 0 3px color-mix(in srgb, var(--app-button-accent) 45%, transparent)`,
         },
       };
 
@@ -62,14 +62,14 @@ const StyledButton = styled(Button, {
       return {
         ...baseStyles,
         backgroundColor: `var(--app-button-secondary)`,
-        color: `var(--app-button-white)`,
+        color: `var(--app-button-primary)`,
         border: '1px solid transparent',
         '&:hover': {
           backgroundColor: `var(--app-button-secondary-darken)`,
         },
         '&:focus-visible': {
           outline: 'none',
-          boxShadow: `0 0 0 3px rgba(var(--app-button-secondary-rgb), 0.45)`,
+          boxShadow: `0 0 0 3px color-mix(in srgb, var(--app-button-secondary) 45%, transparent)`,
         },
       };
 
@@ -77,15 +77,15 @@ const StyledButton = styled(Button, {
       return {
         ...baseStyles,
         backgroundColor: 'transparent',
-        border: `1px solid var(--app-button-primary)`,
-        color: `var(--app-button-primary)`,
+        border: `1px solid var(--app-button-accent)`,
+        color: `var(--app-button-accent)`,
         '&:hover': {
-          backgroundColor: `rgba(var(--app-button-primary-rgb), 0.1)`,
-          borderColor: `var(--app-button-primary)`,
+          backgroundColor: `color-mix(in srgb, var(--app-button-accent) 10%, transparent)`,
+          borderColor: `var(--app-button-accent)`,
         },
         '&:focus-visible': {
           outline: 'none',
-          boxShadow: `0 0 0 3px rgba(var(--app-button-primary-rgb), 0.25)`,
+          boxShadow: `0 0 0 3px color-mix(in srgb, var(--app-button-accent) 25%, transparent)`,
         },
       };
 

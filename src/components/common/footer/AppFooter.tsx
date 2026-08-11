@@ -11,6 +11,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AppButton from '../button/AppButton';
 import styles from './appFooter.module.scss';
+import { useThemeContext } from '../../../context/ThemeContext';
 
 // Social Icons
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -21,8 +22,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AppFooter() {
+  const { mode } = useThemeContext();
   const [email, setEmail] = useState('');
   const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+  const logoUrl = mode === 'dark'
+    ? import.meta.env.VITE_API_TITLE_LOGO_DARK_URL
+    : import.meta.env.VITE_API_TITLE_LOGO_LIGHT_URL;
 
   // Refs for GSAP animations
   const footerRef = useRef<HTMLElement>(null);
@@ -149,7 +155,7 @@ export default function AppFooter() {
           {/* Brand Section */}
           <Box ref={logoSectionRef} className={styles.brandColumn}>
             <img
-              src={import.meta.env.VITE_API_TITLE_LOGO_URL}
+              src={logoUrl}
               alt="App Logo"
               className={styles.logo}
             />

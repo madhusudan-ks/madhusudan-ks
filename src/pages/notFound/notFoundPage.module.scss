@@ -38,6 +38,6 @@
 }
 
 .button:hover {
-  background-color: color.mix(variable.$color-primary, variable.$color-accent, 60%);
+  background-color: color-mix(in srgb, variable.$color-primary 60%, variable.$color-accent);
   transform: translateY(-2px);
 }

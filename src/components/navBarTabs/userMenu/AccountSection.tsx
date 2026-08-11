@@ -30,7 +30,6 @@ const AccountSection = () => {
 
   const user = {
     name: "Guest",
-    email: "Welcome to my portfolio",
     avatarUrl: "",
   };
 
@@ -41,7 +40,7 @@ const AccountSection = () => {
     return (
       <Accordion sx={{ mt: "auto", boxShadow: "none", width: "100%", overflow: "hidden" }}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon sx={{ color: "#000000" }} />}
+          expandIcon={<ExpandMoreIcon sx={{ color: "var(--text-h)" }} />}
           sx={{
             minWidth: 0,
             width: "100%",
@@ -63,26 +62,12 @@ const AccountSection = () => {
                   sx={{
                     fontWeight: 600,
                     fontSize: "0.8rem",
-                    color: "#000000",
+                    color: "var(--text-h)",
                     lineHeight: 1.2,
                     width: "100%",
                   }}
                 >
                   {user.name}
-                </Typography>
-              </Tooltip>
-              <Tooltip title={user.email} placement="top-start" enterDelay={500}>
-                <Typography
-                  noWrap
-                  variant="caption"
-                  sx={{
-                    fontSize: "0.68rem",
-                    color: "#000000",
-                    opacity: 0.6,
-                    width: "100%",
-                  }}
-                >
-                  {user.email}
                 </Typography>
               </Tooltip>
             </Box>
@@ -142,7 +127,7 @@ const AccountSection = () => {
                 sx={{
                   fontWeight: 600,
                   fontSize: "0.75rem",
-                  color: "#000000",
+                  color: "var(--text-h)",
                   lineHeight: 1.1,
                   width: "100%",
                 }}
@@ -150,23 +135,8 @@ const AccountSection = () => {
                 {user.name}
               </Typography>
             </Tooltip>
-            <ExpandMoreIcon sx={{ fontSize: "1rem", color: "#000000", opacity: 0.7, flexShrink: 0 }} />
+            <ExpandMoreIcon sx={{ fontSize: "1rem", color: "var(--text-h)", opacity: 0.7, flexShrink: 0 }} />
           </Box>
-          <Tooltip title={user.email} placement="bottom-start" enterDelay={500}>
-            <Typography
-              noWrap
-              variant="caption"
-              sx={{
-                fontSize: "0.62rem",
-                color: "#000000",
-                opacity: 0.6,
-                width: "100%",
-                maxWidth: { xs: 80, sm: 110, md: 130 },
-              }}
-            >
-              {user.email}
-            </Typography>
-          </Tooltip>
         </Box>
       </Box>
       <Menu

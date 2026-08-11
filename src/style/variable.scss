@@ -4,18 +4,18 @@
 // Keep these generic so we can swap values for dark mode later.
 
 // Palette - Light theme - (60% Dominant background, 30% Secondary sections, 10% Accent interactions) and Dark theme - (10% Dominant background, 30% Secondary sections, 60% Accent interactions)
-$color-background: #F9F7F7; // dominant
-$color-secondary: #DBE2EF;  // secondary (headers/nav/sections)
-$color-accent: #3F72AF;     // accent (buttons/links/highlights)
-$color-primary: #112D4E;    // strong emphasis (titles/hover/primary)
+$color-background: var(--bg); // dominant
+$color-secondary: var(--border);  // secondary (headers/nav/sections)
+$color-accent: var(--accent);     // accent (buttons/links/highlights)
+$color-primary: var(--text-h);    // strong emphasis (titles/hover/primary)
 $color-white: #ffffff;
 $color-black: #000000;
 
 // Semantic aliases
-$color-text: $color-black;         // default text on light background
-$color-surface: $color-white;      // cards and surface elements
-$color-border: rgba($color-primary, 0.12);
-$color-muted: rgba($color-black, 0.6);
+$color-text: var(--text);         // default text on light background
+$color-surface: var(--code-bg);      // cards and surface elements
+$color-border: var(--border);
+$color-muted: var(--text);
 
 // Typography
 $font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
@@ -44,8 +44,8 @@ $radius-lg: 14px;
 $radius-round: 9999px;
 
 // Shadows (minimal, modern)
-$shadow-sm: 0 1px 2px rgba($color-black, 0.05), 0 1px 1px rgba($color-black, 0.04);
-$shadow-md: 0 2px 8px rgba($color-black, 0.08), 0 4px 16px rgba($color-black, 0.06);
+$shadow-sm: 0 1px 2px color-mix(in srgb, $color-black 5%, transparent), 0 1px 1px color-mix(in srgb, $color-black 4%, transparent);
+$shadow-md: 0 2px 8px color-mix(in srgb, $color-black 8%, transparent), 0 4px 16px color-mix(in srgb, $color-black 6%, transparent);
 
 // Transitions
 $transition-fast: 120ms ease-out;

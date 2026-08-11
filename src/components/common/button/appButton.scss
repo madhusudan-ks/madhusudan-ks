@@ -7,15 +7,14 @@
   --app-button-secondary: #{$color-secondary};
   --app-button-accent: #{$color-accent};
   --app-button-white: #{$color-white};
+  --app-button-background: #{$color-background};
   --app-button-text: #{$color-text};
   
   // Darkened versions for hover states (8% darker)
-  --app-button-primary-darken: #{color.adjust($color-primary, $lightness: -8%)};
-  --app-button-secondary-darken: #{color.adjust($color-secondary, $lightness: -8%)};
+  --app-button-primary-darken: color-mix(in srgb, $color-primary, black 15%);
+  --app-button-secondary-darken: color-mix(in srgb, $color-secondary, black 15%);
   
-  // RGB values for rgba() usage
-  --app-button-primary-rgb: #{color.channel($color-primary, "red", $space: rgb)}, #{color.channel($color-primary, "green", $space: rgb)}, #{color.channel($color-primary, "blue", $space: rgb)};
-  --app-button-secondary-rgb: #{color.channel($color-secondary, "red", $space: rgb)}, #{color.channel($color-secondary, "green", $space: rgb)}, #{color.channel($color-secondary, "blue", $space: rgb)};
+
   
   // Spacing
   --app-button-padding-x: #{$space-4};
@@ -23,7 +22,7 @@
   --app-button-gap: #{$space-2};
   
   // Border radius
-  --app-button-radius: #{$radius-sm};
+  --app-button-radius: #{$radius-round};
   
   // Transitions
   --app-button-transition: #{$transition-base};

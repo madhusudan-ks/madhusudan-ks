@@ -29,7 +29,6 @@ const StreamCard = forwardRef<HTMLDivElement, StreamCardProps>(
       const image = imageRef.current;
       const gradient = gradientRef.current;
       const badge = badgeRef.current;
-      const title = titleRef.current;
       const content = contentRef.current;
       const wave = waveRef.current;
 
@@ -109,18 +108,6 @@ const StreamCard = forwardRef<HTMLDivElement, StreamCardProps>(
           );
         }
 
-        // Title color transition to primary
-        if (title) {
-          tl.to(
-            title,
-            {
-              color: '#6366f1',
-              duration: 0.3,
-              ease: 'power2.out',
-            },
-            0.1
-          );
-        }
 
         // Content section lift for depth
         if (content) {
@@ -209,18 +196,7 @@ const StreamCard = forwardRef<HTMLDivElement, StreamCardProps>(
           );
         }
 
-        // Reset title color
-        if (title) {
-          tl.to(
-            title,
-            {
-              color: '#1a1a1a',
-              duration: 0.3,
-              ease: 'power2.inOut',
-            },
-            0
-          );
-        }
+
 
         // Reset content position
         if (content) {

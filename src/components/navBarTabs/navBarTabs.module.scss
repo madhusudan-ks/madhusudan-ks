@@ -7,10 +7,11 @@ $transition-med: 220ms $ease-spring;
 
 /* AppBar and Toolbar */
 .appbar {
-  background-color: variable.$color-secondary !important;
+  background-color: transparent !important;
   color: variable.$color-primary !important;
   backdrop-filter: saturate(120%) blur(6px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid variable.$color-border;
+  box-shadow: none;
 }
 
 .toolbar {
@@ -29,10 +30,10 @@ $transition-med: 220ms $ease-spring;
   position: relative;
   margin-left: auto;
   padding: 6px;
-  background-color: rgba(variable.$color-white, 0.6);
-  border: 1px solid variable.$color-border;
+  background-color: color-mix(in srgb, variable.$color-surface 95%, transparent);
+  border: 1px solid color-mix(in srgb, variable.$color-primary 15%, transparent);
   border-radius: 999px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px color-mix(in srgb, variable.$color-black 8%, transparent);
 }
 
 .tab-link {
@@ -53,12 +54,12 @@ $transition-med: 220ms $ease-spring;
 
   &:hover {
     color: variable.$color-primary;
-    background-color: rgba(variable.$color-accent, 0.12);
+    background-color: color-mix(in srgb, variable.$color-accent 12%, transparent);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(variable.$color-accent, 0.35);
+    box-shadow: 0 0 0 3px color-mix(in srgb, variable.$color-accent 35%, transparent);
   }
 }
 
@@ -71,22 +72,22 @@ $transition-med: 220ms $ease-spring;
 
 /* Active pill */
 .active {
-  color: variable.$color-primary;
-  background-color: variable.$color-white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid variable.$color-border;
+  color: #ffffff;
+  background-color: variable.$color-accent;
+  box-shadow: 0 4px 12px color-mix(in srgb, variable.$color-accent 35%, transparent);
+  border: 1px solid variable.$color-accent;
 }
 
 
 /* Drawer for Mobile */
 .drawer {
-  background-color: rgba(variable.$color-secondary, 0.6) !important;
+  background-color: color-mix(in srgb, variable.$color-background 95%, transparent) !important;
   color: variable.$color-primary !important;
-  width: 200px;
+  width: 250px;
   height: 100%;
   padding: 20px;
-  border: 1px solid variable.$color-border;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-left: 1px solid variable.$color-border;
+  box-shadow: -6px 0 18px color-mix(in srgb, variable.$color-black 8%, transparent);
 }
 
 .drawer-link {
@@ -106,26 +107,26 @@ $transition-med: 220ms $ease-spring;
 
   &:hover {
     color: variable.$color-primary;
-    background-color: rgba(variable.$color-accent, 0.12);
+    background-color: color-mix(in srgb, variable.$color-accent 12%, transparent);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(variable.$color-accent, 0.35);
+    box-shadow: 0 0 0 3px color-mix(in srgb, variable.$color-accent 35%, transparent);
   }
 }
 
 .drawer-link.active {
-  color: variable.$color-primary;
-  background-color: variable.$color-white;
-  border: 1px solid variable.$color-border;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #ffffff;
+  background-color: variable.$color-accent;
+  border: 1px solid variable.$color-accent;
+  box-shadow: 0 4px 12px color-mix(in srgb, variable.$color-accent 35%, transparent);
 }
 
 .drawer-admin-button {
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid variable.$color-border;
 }
 
 /* Responsive */

@@ -1,6 +1,6 @@
 import React from "react";
 import type { ExperienceItem, ExperienceCompany } from "./experienceData";
-import { exampleExperienceGroups } from "./experienceData";
+import { experienceGroups } from "./experienceData";
 import styles from "./experienceTree.module.scss";
 
 type ExperienceTreeProps = {
@@ -28,7 +28,7 @@ const ExperienceTree: React.FC<ExperienceTreeProps> = ({
   className,
 }) => {
   const data: ExperienceCompany[] =
-    groups ?? (items ? groupByCompany(items) : exampleExperienceGroups);
+    groups ?? (items ? groupByCompany(items) : experienceGroups);
 
   return (
     <section className={`${styles["experience-tree"]} ${className ?? ""}`.trim()}>
@@ -67,7 +67,7 @@ const ExperienceTree: React.FC<ExperienceTreeProps> = ({
                       className={`${styles.roleItem} ${r.muted ? styles.muted : ""}`.trim()}
                     >
                       <div className={styles.roleTitle}>
-                        {r.role}
+                        {r.role}  className={styles.roleTitle2}
                         {r.roleType && <span className={styles.roleKind}>{r.roleType}</span>}
                         {r.verified && <span className={styles.badgeVerified} title="Verified">✓</span>}
                         {r.featured && <span className={styles.badgeFeatured} title="Featured">★</span>}
@@ -83,13 +83,13 @@ const ExperienceTree: React.FC<ExperienceTreeProps> = ({
                           </>
                         )}
                       </div>
-                  {r.bullets && r.bullets.length > 0 && (
-                    <ul className={styles.bullets}>
-                      {r.bullets.map((b, idx) => (
-                        <li key={idx}>{b}</li>
-                      ))}
-                    </ul>
-                  )}
+                      {r.bullets && r.bullets.length > 0 && (
+                        <ul className={styles.bullets}>
+                          {r.bullets.map((b, idx) => (
+                            <li key={idx}>{b}</li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   ))}
                 </ul>

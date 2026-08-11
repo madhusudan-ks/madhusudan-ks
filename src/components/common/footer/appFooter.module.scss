@@ -10,9 +10,9 @@
   background-color: $color-secondary;
   color: $color-primary;
   border-radius: 24px 24px 0 0;
-  border: 1px solid rgba($color-primary, 0.08);
+  border: 1px solid color-mix(in srgb, $color-primary 8%, transparent);
   border-bottom: none;
-  box-shadow: 0 -8px 24px rgba($color-primary, 0.04);
+  box-shadow: 0 -8px 24px color-mix(in srgb, $color-primary 4%, transparent);
   text-align: left;
 
   @include respond-to(md) {
@@ -65,7 +65,7 @@
 
 .brandTagline {
   font-family: $font-family-base;
-  color: rgba($color-primary, 0.7);
+  color: color-mix(in srgb, $color-primary 70%, transparent);
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0;
@@ -90,7 +90,7 @@
 
 .sectionLink {
   display: inline-block;
-  color: rgba($color-primary, 0.7) !important;
+  color: color-mix(in srgb, $color-primary 70%, transparent) !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
   text-decoration: none !important;
@@ -114,7 +114,7 @@
 
 .subscribeDescription {
   font-family: $font-family-base;
-  color: rgba($color-primary, 0.7);
+  color: color-mix(in srgb, $color-primary 70%, transparent);
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
@@ -123,18 +123,18 @@
 .subscribeForm {
   display: flex;
   align-items: center;
-  background-color: rgba($color-white, 0.75);
-  border: 1px solid rgba($color-primary, 0.12);
+  background-color: color-mix(in srgb, $color-primary 4%, transparent);
+  border: 1px solid color-mix(in srgb, $color-primary 12%, transparent);
   border-radius: 99px;
   padding: 4px;
   margin-top: $space-2;
-  transition: border-color $transition-base, box-shadow $transition-base;
+  transition: border-color $transition-base, box-shadow $transition-base, background-color $transition-base;
   width: 100%;
 
   &:focus-within {
     border-color: $color-accent;
-    box-shadow: 0 0 0 3px rgba($color-accent, 0.15);
-    background-color: $color-white;
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-accent 15%, transparent);
+    background-color: color-mix(in srgb, $color-primary 8%, transparent);
   }
 }
 
@@ -150,7 +150,7 @@
   width: 100%;
 
   &::placeholder {
-    color: rgba($color-primary, 0.45);
+    color: color-mix(in srgb, $color-primary 45%, transparent);
   }
 }
 
@@ -166,7 +166,7 @@
 
 .divider {
   margin: $space-6 0 $space-4 0 !important;
-  border-color: rgba($color-primary, 0.08) !important;
+  border-color: color-mix(in srgb, $color-primary 8%, transparent) !important;
 }
 
 .bottomBar {
@@ -185,7 +185,7 @@
 .copyright {
   font-family: $font-family-base;
   font-size: 0.85rem !important;
-  color: rgba($color-primary, 0.6) !important;
+  color: color-mix(in srgb, $color-primary 60%, transparent) !important;
 }
 
 .socialIcons {
@@ -194,9 +194,9 @@
 }
 
 .socialIconButton {
-  color: rgba($color-primary, 0.6) !important;
-  background-color: rgba($color-white, 0.6) !important;
-  border: 1px solid rgba($color-primary, 0.08) !important;
+  color: color-mix(in srgb, $color-primary 80%, transparent) !important;
+  background-color: color-mix(in srgb, $color-primary 6%, transparent) !important;
+  border: 1px solid color-mix(in srgb, $color-primary 12%, transparent) !important;
   transition: all $transition-base !important;
   padding: 8px !important;
 
@@ -205,6 +205,6 @@
     background-color: $color-accent !important;
     border-color: $color-accent !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($color-accent, 0.2);
+    box-shadow: 0 4px 12px color-mix(in srgb, $color-accent 20%, transparent);
   }
 }

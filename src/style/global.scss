@@ -116,7 +116,7 @@ a {
   }
 
   &--alt {
-    background-color: color.mix($color-background, $color-white, 70%);
+    background-color: color-mix(in srgb, $color-background 70%, $color-white);
   }
 }
 
@@ -129,7 +129,7 @@ a {
   padding: $space-3 $space-4;
 
   a {
-    color: rgba($color-white, 0.95);
+    color: color-mix(in srgb, $color-white 95%, transparent);
     transition: color $transition-fast;
     &:hover {
       color: $color-white;
@@ -149,7 +149,7 @@ a {
 
   &--elevate:hover {
     box-shadow: $shadow-md;
-    border-color: rgba($color-primary, 0.18);
+    border-color: color-mix(in srgb, $color-primary 18%, transparent);
     transform: translateY(-1px);
   }
 
@@ -196,12 +196,12 @@ a {
     // Hover accent as requested
     background-color: $color-accent;
     color: $color-primary;
-    border-color: color.mix($color-accent, $color-primary, 60%);
+    border-color: color-mix(in srgb, $color-accent 60%, $color-primary);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($color-accent, 0.45);
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-accent 45%, transparent);
   }
 }
 
@@ -211,7 +211,7 @@ a {
   border-color: transparent;
 
   &:hover {
-    background-color: color.mix($color-secondary, $color-primary, 70%);
+    background-color: color-mix(in srgb, $color-secondary 70%, $color-primary);
   }
 }
 
@@ -221,7 +221,7 @@ a {
   border-color: transparent;
 
   &:hover {
-    background-color: color.mix($color-accent, $color-primary, 70%);
+    background-color: color-mix(in srgb, $color-accent 70%, $color-primary);
     color: $color-white;
   }
 }
@@ -229,11 +229,11 @@ a {
 .btn-ghost {
   background-color: transparent;
   color: $color-primary;
-  border-color: rgba($color-primary, 0.3);
+  border-color: color-mix(in srgb, $color-primary 30%, transparent);
 
   &:hover {
-    background-color: rgba($color-primary, 0.06);
-    border-color: rgba($color-primary, 0.5);
+    background-color: color-mix(in srgb, $color-primary 6%, transparent);
+    border-color: color-mix(in srgb, $color-primary 50%, transparent);
   }
 }
 

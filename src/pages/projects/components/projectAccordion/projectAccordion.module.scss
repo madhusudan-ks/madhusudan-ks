@@ -18,7 +18,7 @@
 
   &:hover {
     box-shadow: $shadow-md;
-    border-color: rgba($color-accent, 0.2);
+    border-color: color-mix(in srgb, $color-accent 20%, transparent);
   }
 
   &:before {
@@ -28,7 +28,7 @@
   &.Mui-expanded {
     margin: 0;
     box-shadow: $shadow-md;
-    border-color: rgba($color-accent, 0.25);
+    border-color: color-mix(in srgb, $color-accent 25%, transparent);
   }
 }
 
@@ -38,12 +38,12 @@
   transition: background-color $transition-base;
 
   &:hover {
-    background-color: rgba($color-accent, 0.04);
+    background-color: color-mix(in srgb, $color-accent 4%, transparent);
   }
 
   &.Mui-expanded {
     min-height: auto;
-    background-color: rgba($color-accent, 0.06);
+    background-color: color-mix(in srgb, $color-accent 6%, transparent);
   }
 
   .MuiAccordionSummary-content {
@@ -99,7 +99,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
-  box-shadow: 0 2px 4px rgba($color-black, 0.1);
+  box-shadow: 0 2px 4px color-mix(in srgb, $color-black 10%, transparent);
   transition: transform $transition-fast;
 
   &:hover {
@@ -131,7 +131,7 @@
 .accordionDetails {
   padding: $space-4;
   border-top: 1px solid $color-border;
-  background-color: rgba($color-background, 0.3);
+  background-color: color-mix(in srgb, $color-background 30%, transparent);
   display: flex;
   flex-direction: column;
   gap: $space-5;
@@ -171,20 +171,20 @@
 }
 
 .techChip {
-  background-color: rgba($color-accent, 0.15);
+  background-color: color-mix(in srgb, $color-accent 15%, transparent);
   color: $color-accent;
   border-radius: $radius-round;
   font-size: 0.8125rem;
   font-weight: 600;
   padding: $space-1 $space-3;
   height: auto;
-  border: 1px solid rgba($color-accent, 0.25);
+  border: 1px solid color-mix(in srgb, $color-accent 25%, transparent);
   transition: all $transition-base;
 
   &:hover {
-    background-color: rgba($color-accent, 0.25);
+    background-color: color-mix(in srgb, $color-accent 25%, transparent);
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba($color-accent, 0.2);
+    box-shadow: 0 2px 6px color-mix(in srgb, $color-accent 20%, transparent);
   }
 
   .MuiChip-label {
@@ -242,19 +242,19 @@
   transition: all $transition-base;
   text-decoration: none;
   border: none;
-  box-shadow: 0 2px 6px rgba($color-primary, 0.2);
+  box-shadow: 0 2px 6px color-mix(in srgb, $color-primary 20%, transparent);
   cursor: pointer;
 
   &:hover {
-    background-color: color.mix($color-primary, $color-black, 85%);
+    background-color: color-mix(in srgb, $color-primary 85%, $color-black);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba($color-primary, 0.3);
+    box-shadow: 0 4px 10px color-mix(in srgb, $color-primary 30%, transparent);
     text-decoration: none;
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba($color-primary, 0.2);
+    box-shadow: 0 2px 4px color-mix(in srgb, $color-primary 20%, transparent);
   }
 
   svg {

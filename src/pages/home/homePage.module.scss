@@ -52,7 +52,7 @@
   display: block;
   font-size: 1.25rem;
   font-weight: 600;
-  color: color.mix($color-primary, $color-muted, 70%);
+  color: color-mix(in srgb, $color-primary 70%, $color-muted);
   margin-top: $space-2;
 
   @include respond-to(md) {
@@ -128,7 +128,7 @@
 
   &:hover {
     box-shadow: $shadow-md;
-    border-color: rgba($color-accent, 0.3);
+    border-color: color-mix(in srgb, $color-accent 30%, transparent);
     transform: translateY(-4px);
   }
 }
@@ -139,7 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba($color-accent, 0.1) 0%, rgba($color-primary, 0.05) 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, $color-accent 10%, transparent) 0%, color-mix(in srgb, $color-primary 5%, transparent) 100%);
   border-radius: $radius-md;
   margin-bottom: $space-3;
 }
@@ -227,7 +227,7 @@
   border-radius: $radius-lg;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 8px 32px rgba($color-black, 0.08);
+  box-shadow: 0 8px 32px color-mix(in srgb, $color-black 8%, transparent);
   border: 1px solid $color-border;
   transition: box-shadow $transition-base, transform $transition-base;
   will-change: transform, opacity;
@@ -235,12 +235,12 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($color-accent, 0.4);
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-accent 40%, transparent);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($color-accent, 0.4);
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-accent 40%, transparent);
   }
 }
 
@@ -274,7 +274,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba($color-secondary, 0.4) 0%, rgba($color-secondary, 0.15) 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, $color-secondary 40%, transparent) 0%, color-mix(in srgb, $color-secondary 15%, transparent) 100%);
   border-radius: $radius-md;
   margin-bottom: $space-4;
 }
@@ -313,7 +313,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: rgba($color-primary, 0.08);
+  background: color-mix(in srgb, $color-primary 8%, transparent);
   border-radius: 50%;
   margin-top: $space-4;
   transition: background-color $transition-base, transform $transition-base;
