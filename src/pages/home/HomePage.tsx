@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
 import AppButton from "../../components/common/button/AppButton";
+import SharedHero from "../../components/common/hero/SharedHero";
 import styles from "./homePage.module.scss";
 
 // Register ScrollTrigger plugin
@@ -51,11 +52,6 @@ function HomePage() {
 
   // Refs for animations
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const decorRef = useRef<HTMLDivElement>(null);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const statRefs = useRef<(HTMLDivElement | null)[]>([]);
   const statsContainerRef = useRef<HTMLDivElement>(null);
@@ -64,95 +60,7 @@ function HomePage() {
   useLayoutEffect(() => {
 
     const ctx = gsap.context(() => {
-      // Create master timeline for hero entrance
-      const heroTl = gsap.timeline({ delay: 0.15 });
-
-      // Decorative background animation
-      if (decorRef.current) {
-        heroTl.fromTo(
-          decorRef.current.querySelectorAll(".decorShape"),
-          {
-            opacity: 0,
-            scale: 0,
-            rotation: -180,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "back.out(1.7)",
-          },
-          0
-        );
-      }
-
-      // Title entrance with split text effect
-      if (titleRef.current) {
-        heroTl.fromTo(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 80,
-            scale: 0.85,
-            filter: "blur(20px)",
-            rotationX: 45,
-            transformPerspective: 1200,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            rotationX: 0,
-            duration: 1,
-            ease: "power4.out",
-          },
-          0.2
-        );
-      }
-
-      // Subtitle fade in
-      if (subtitleRef.current) {
-        heroTl.fromTo(
-          subtitleRef.current,
-          {
-            opacity: 0,
-            y: 40,
-            filter: "blur(10px)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          0.5
-        );
-      }
-
-      // CTA buttons entrance
-      if (ctaRef.current) {
-        heroTl.fromTo(
-          ctaRef.current.children,
-          {
-            opacity: 0,
-            y: 30,
-            scale: 0.9,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.12,
-            ease: "back.out(1.5)",
-          },
-          0.7
-        );
-      }
+      // Create master timeline
 
       // Feature cards scroll-triggered animation
       featureRefs.current.forEach((card, index) => {
@@ -272,17 +180,6 @@ function HomePage() {
         });
       }
 
-      // Floating animation for decorative elements
-      gsap.to(".floatingDecor", {
-        y: -20,
-        rotation: 5,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.5,
-      });
-
       // Refresh ScrollTrigger
       ScrollTrigger.refresh();
     }, containerRef);
@@ -301,55 +198,27 @@ function HomePage() {
   return (
     <Container ref={containerRef} maxWidth="xl" className={styles.homePage}>
       {/* Hero Section */}
-      <Box ref={heroRef} className={styles.hero}>
-        {/* Decorative Background */}
-        <Box ref={decorRef} className={styles.heroDecor}>
-          <Box className={`${styles.decorShape} ${styles.shape1} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape2} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape3} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape4} decorShape floatingDecor`} />
-        </Box>
-
-        <Box className={styles.heroContent}>
-          <Typography
-            ref={titleRef}
-            variant="h1"
-            component="h1"
-            className={styles.heroTitle}
-          >
-            <span className={styles.greeting}>Hello, I'm</span>
-            <span className={styles.name}>{"Developer"}</span>
-            <span className={styles.role}>Full-Stack Engineer</span>
-          </Typography>
-
-          <Typography
-            ref={subtitleRef}
-            variant="body1"
-            className={styles.heroSubtitle}
-          >
-            Crafting elegant solutions with modern technologies. Passionate about
-            building scalable applications, exploring new frameworks, and turning
-            complex problems into intuitive user experiences.
-          </Typography>
-
-          <Box ref={ctaRef} className={styles.ctaButtons}>
-            <AppButton
-              variant="primary"
-              onClick={() => handleNavigation("/projects")}
-              startIcon={<Icon icon="ph:rocket-launch-duotone" />}
-            >
-              View Projects
-            </AppButton>
-            <AppButton
-              variant="outline"
-              onClick={() => handleNavigation("/experience")}
-              startIcon={<Icon icon="ph:user-circle-duotone" />}
-            >
-              My Journey
-            </AppButton>
-          </Box>
-        </Box>
-      </Box>
+      <SharedHero
+        titlePrefix="Hello, I'm"
+        title="Developer"
+        titleSuffix="Full-Stack Engineer"
+        subtitle="Crafting elegant solutions with modern technologies. Passionate about building scalable applications, exploring new frameworks, and turning complex problems into intuitive user experiences."
+      >
+        <AppButton
+          variant="primary"
+          onClick={() => handleNavigation("/projects")}
+          startIcon={<Icon icon="ph:rocket-launch-duotone" />}
+        >
+          View Projects
+        </AppButton>
+        <AppButton
+          variant="outline"
+          onClick={() => handleNavigation("/experience")}
+          startIcon={<Icon icon="ph:user-circle-duotone" />}
+        >
+          My Journey
+        </AppButton>
+      </SharedHero>
 
       {/* Stats Section */}
       <Box ref={statsContainerRef} className={styles.statsSection}>

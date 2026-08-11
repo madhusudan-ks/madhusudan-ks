@@ -3,7 +3,10 @@ import { Box, Container, Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
-import ExperienceTree, { exampleExperienceGroups } from "./components/experienceTree/ExperienceTree";
+import SharedHero from "../../components/common/hero/SharedHero";
+import ExperienceTree from "./components/experienceTree/ExperienceTree";
+import { exampleExperienceGroups } from "./components/experienceTree/experienceData";
+import type { ExperienceCompany, ExperienceItem } from "./components/experienceTree/experienceData";
 import styles from "./experiencePage.module.scss";
 
 // Register ScrollTrigger plugin
@@ -11,13 +14,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Calculate experience stats dynamically
 const calculateStats = () => {
-  const allRoles = exampleExperienceGroups.flatMap(g => g.roles);
+  const allRoles = exampleExperienceGroups.flatMap((g: ExperienceCompany) => g.roles);
   const totalCompanies = exampleExperienceGroups.length;
   const totalRoles = allRoles.length;
 
   // Calculate total years (approximate)
   const currentDate = new Date();
-  const earliestRole = allRoles.reduce((earliest, role) => {
+  const earliestRole = allRoles.reduce((earliest: Date, role: ExperienceItem) => {
     const startDate = new Date(role.start);
     return startDate < earliest ? startDate : earliest;
   }, currentDate);
@@ -70,10 +73,6 @@ function ExperiencePage() {
 
   // Refs for animations
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const decorRef = useRef<HTMLDivElement>(null);
   const treeRef = useRef<HTMLDivElement>(null);
   const statRefs = useRef<(HTMLDivElement | null)[]>([]);
   const statsContainerRef = useRef<HTMLDivElement>(null);
@@ -83,74 +82,8 @@ function ExperiencePage() {
   useLayoutEffect(() => {
 
     const ctx = gsap.context(() => {
-      // Create master timeline for hero entrance
-      const heroTl = gsap.timeline();
+      // Create master timeline
 
-      // Decorative background animation
-      if (decorRef.current) {
-        heroTl.fromTo(
-          decorRef.current.querySelectorAll(".decorShape"),
-          {
-            opacity: 0,
-            scale: 0,
-            rotation: -180,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "back.out(1.7)",
-          },
-          0
-        );
-      }
-
-      // Title entrance with blur reveal
-      if (titleRef.current) {
-        heroTl.fromTo(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.9,
-            filter: "blur(15px)",
-            rotationX: 30,
-            transformPerspective: 1200,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            rotationX: 0,
-            duration: 0.9,
-            ease: "power4.out",
-          },
-          0.2
-        );
-      }
-
-      // Subtitle fade in
-      if (subtitleRef.current) {
-        heroTl.fromTo(
-          subtitleRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            filter: "blur(8px)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          0.4
-        );
-      }
 
       // Stats counter animation with scroll trigger
       if (statsContainerRef.current) {
@@ -312,17 +245,6 @@ function ExperiencePage() {
         });
       }
 
-      // Floating animation for decorative elements
-      gsap.to(".floatingDecor", {
-        y: -15,
-        rotation: 3,
-        duration: 3.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.4,
-      });
-
       // Refresh ScrollTrigger
       ScrollTrigger.refresh();
     }, containerRef);
@@ -337,35 +259,11 @@ function ExperiencePage() {
   return (
     <Container ref={containerRef} maxWidth="xl" className={styles.experiencePage}>
       {/* Hero Section */}
-      <Box ref={heroRef} className={styles.hero}>
-        {/* Decorative Background */}
-        <Box ref={decorRef} className={styles.heroDecor}>
-          <Box className={`${styles.decorShape} ${styles.shape1} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape2} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape3} decorShape floatingDecor`} />
-        </Box>
-
-        <Box className={styles.heroContent}>
-          <Typography
-            ref={titleRef}
-            variant="h1"
-            component="h1"
-            className={styles.heroTitle}
-          >
-            <Icon icon="ph:briefcase-duotone" className={styles.titleIcon} />
-            <span className={styles.titleText}>Work Experience</span>
-          </Typography>
-
-          <Typography
-            ref={subtitleRef}
-            variant="body1"
-            className={styles.heroSubtitle}
-          >
-            A journey through my professional career, showcasing roles,
-            accomplishments, and the technologies I've mastered along the way.
-          </Typography>
-        </Box>
-      </Box>
+      <SharedHero
+        title="Work Experience"
+        icon="ph:briefcase-duotone"
+        subtitle="A journey through my professional career, showcasing roles, accomplishments, and the technologies I've mastered along the way."
+      />
 
       {/* Stats Section */}
       <Box ref={statsContainerRef} className={styles.statsSection}>

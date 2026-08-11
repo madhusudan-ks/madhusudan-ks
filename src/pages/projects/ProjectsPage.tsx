@@ -3,6 +3,7 @@ import { Box, Container, Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
+import SharedHero from "../../components/common/hero/SharedHero";
 import LogoSlider from "../../components/common/logoSlider/LogoSlider";
 import teckStackLogo from "../../constants/teckStackLogo.json";
 import ProjectAccordion from "./components/projectAccordion/ProjectAccordion";
@@ -32,10 +33,6 @@ function ProjectsPage() {
 
   // Refs for animations
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const decorRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
   const statRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -45,74 +42,8 @@ function ProjectsPage() {
   useLayoutEffect(() => {
 
     const ctx = gsap.context(() => {
-      // Create master timeline for hero entrance with delay to prevent render blocking
-      const heroTl = gsap.timeline({ delay: 0.15 });
+      // Create master timeline
 
-      // Decorative background animation
-      if (decorRef.current) {
-        heroTl.fromTo(
-          decorRef.current.querySelectorAll(".decorShape"),
-          {
-            opacity: 0,
-            scale: 0,
-            rotation: -180,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "back.out(1.7)",
-          },
-          0
-        );
-      }
-
-      // Title entrance with blur reveal
-      if (titleRef.current) {
-        heroTl.fromTo(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.9,
-            filter: "blur(15px)",
-            rotationX: 30,
-            transformPerspective: 1200,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            rotationX: 0,
-            duration: 0.9,
-            ease: "power4.out",
-          },
-          0.2
-        );
-      }
-
-      // Subtitle fade in
-      if (subtitleRef.current) {
-        heroTl.fromTo(
-          subtitleRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            filter: "blur(8px)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          0.4
-        );
-      }
 
       // Stats counter animation with scroll trigger
       if (statsContainerRef.current) {
@@ -233,17 +164,6 @@ function ProjectsPage() {
         });
       }
 
-      // Floating animation for decorative elements
-      gsap.to(".floatingDecor", {
-        y: -15,
-        rotation: 3,
-        duration: 3.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.4,
-      });
-
       // Refresh ScrollTrigger
       ScrollTrigger.refresh();
     }, containerRef);
@@ -258,35 +178,11 @@ function ProjectsPage() {
   return (
     <Container ref={containerRef} maxWidth="xl" className={styles.projectsPage}>
       {/* Hero Section */}
-      <Box ref={heroRef} className={styles.hero}>
-        {/* Decorative Background */}
-        <Box ref={decorRef} className={styles.heroDecor}>
-          <Box className={`${styles.decorShape} ${styles.shape1} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape2} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape3} decorShape floatingDecor`} />
-        </Box>
-
-        <Box className={styles.heroContent}>
-          <Typography
-            ref={titleRef}
-            variant="h1"
-            component="h1"
-            className={styles.heroTitle}
-          >
-            <Icon icon="ph:code-duotone" className={styles.titleIcon} />
-            <span className={styles.titleText}>My Projects</span>
-          </Typography>
-
-          <Typography
-            ref={subtitleRef}
-            variant="body1"
-            className={styles.heroSubtitle}
-          >
-            Explore a collection of projects built with modern technologies,
-            from full-stack applications to innovative tools and solutions.
-          </Typography>
-        </Box>
-      </Box>
+      <SharedHero
+        title="My Projects"
+        icon="ph:code-duotone"
+        subtitle="Explore a collection of projects built with modern technologies, from full-stack applications to innovative tools and solutions."
+      />
 
       {/* Stats Section */}
       <Box ref={statsContainerRef} className={styles.statsSection}>

@@ -21,7 +21,7 @@ export type LogoSliderProps = {
 	className?: string;
 };
 
-export const TECH_STACK_ICONS: Record<string, string> = {
+const TECH_STACK_ICONS: Record<string, string> = {
 	javascript: 'simple-icons:javascript',
 	react: 'simple-icons:react',
 	bootstrap: 'simple-icons:bootstrap',
@@ -238,7 +238,7 @@ export function LogoSlider({
 			const seconds = halfWidth / speed;
 			durationStr = `${seconds}s`;
 		}
-		return durationStr ? ({ ['--duration' as any]: durationStr } as React.CSSProperties) : {};
+		return durationStr ? ({ ['--duration' as unknown as string]: durationStr } as React.CSSProperties) : {};
 	}, [useCssFallback, speed, halfWidth]);
 
 	if (!doubledLogos.length) return null;
@@ -262,8 +262,8 @@ export function LogoSlider({
 				style={
 					{
 						// Large-screen gap; small-screen gap is controlled by CSS
-						['--gapLarge' as any]: `${gap}px`,
-						['--visibleCountLarge' as any]: visibleCount
+						['--gapLarge' as unknown as string]: `${gap}px`,
+						['--visibleCountLarge' as unknown as string]: visibleCount
 					} as React.CSSProperties
 				}
 				role="region"

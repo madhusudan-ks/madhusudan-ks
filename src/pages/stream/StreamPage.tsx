@@ -3,6 +3,7 @@ import { Box, Container, Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
+import SharedHero from "../../components/common/hero/SharedHero";
 import StreamCard from "./components/streamCard/StreamCard";
 import { sampleCards } from "./components/streamCard/streamData";
 import styles from "./streamPage.module.scss";
@@ -47,10 +48,6 @@ function StreamPage() {
 
   // Refs for animations
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const decorRef = useRef<HTMLDivElement>(null);
   const statRefs = useRef<(HTMLDivElement | null)[]>([]);
   const statsContainerRef = useRef<HTMLDivElement>(null);
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -59,74 +56,8 @@ function StreamPage() {
   // GSAP Animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Create master timeline for hero entrance
-      const heroTl = gsap.timeline({ delay: 0.15 });
+      // Create master timeline
 
-      // Decorative background animation
-      if (decorRef.current) {
-        heroTl.fromTo(
-          decorRef.current.querySelectorAll(".decorShape"),
-          {
-            opacity: 0,
-            scale: 0,
-            rotation: -180,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "back.out(1.7)",
-          },
-          0
-        );
-      }
-
-      // Title entrance with blur reveal
-      if (titleRef.current) {
-        heroTl.fromTo(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.9,
-            filter: "blur(15px)",
-            rotationX: 30,
-            transformPerspective: 1200,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            rotationX: 0,
-            duration: 0.9,
-            ease: "power4.out",
-          },
-          0.2
-        );
-      }
-
-      // Subtitle fade in
-      if (subtitleRef.current) {
-        heroTl.fromTo(
-          subtitleRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            filter: "blur(8px)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          0.4
-        );
-      }
 
       // Stats counter animation with scroll trigger
       if (statsContainerRef.current) {
@@ -291,17 +222,6 @@ function StreamPage() {
         });
       });
 
-      // Floating animation for decorative elements
-      gsap.to(".floatingDecor", {
-        y: -15,
-        rotation: 3,
-        duration: 3.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        stagger: 0.4,
-      });
-
       // Refresh ScrollTrigger
       ScrollTrigger.refresh();
     }, containerRef);
@@ -318,35 +238,11 @@ function StreamPage() {
   return (
     <Container ref={containerRef} maxWidth="xl" className={styles.streamPage}>
       {/* Hero Section */}
-      <Box ref={heroRef} className={styles.hero}>
-        {/* Decorative Background */}
-        <Box ref={decorRef} className={styles.heroDecor}>
-          <Box className={`${styles.decorShape} ${styles.shape1} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape2} decorShape floatingDecor`} />
-          <Box className={`${styles.decorShape} ${styles.shape3} decorShape floatingDecor`} />
-        </Box>
-
-        <Box className={styles.heroContent}>
-          <Typography
-            ref={titleRef}
-            variant="h1"
-            component="h1"
-            className={styles.heroTitle}
-          >
-            <Icon icon="ph:newspaper-duotone" className={styles.titleIcon} />
-            <span className={styles.titleText}>Latest Articles</span>
-          </Typography>
-
-          <Typography
-            ref={subtitleRef}
-            variant="body1"
-            className={styles.heroSubtitle}
-          >
-            Stay updated with curated articles, tutorials, and insights about
-            modern web development, best practices, and emerging technologies.
-          </Typography>
-        </Box>
-      </Box>
+      <SharedHero
+        title="Latest Articles"
+        icon="ph:newspaper-duotone"
+        subtitle="Stay updated with curated articles, tutorials, and insights about modern web development, best practices, and emerging technologies."
+      />
 
       {/* Stats Section */}
       <Box ref={statsContainerRef} className={styles.statsSection}>

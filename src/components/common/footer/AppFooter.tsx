@@ -27,10 +27,8 @@ export default function AppFooter() {
   // Refs for GSAP animations
   const footerRef = useRef<HTMLElement>(null);
   const logoSectionRef = useRef<HTMLDivElement>(null);
-  const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const dividerRef = useRef<HTMLHRElement>(null);
   const bottomBarRef = useRef<HTMLDivElement>(null);
-  const socialIconsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleComingSoon = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,8 +39,12 @@ export default function AppFooter() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Initial states
+      const sections = footerRef.current?.querySelectorAll(`.${styles.section}`) || [];
+      const subscribeSection = footerRef.current?.querySelector(`.${styles.subscribeSection}`);
+      const allSections = [...Array.from(sections), subscribeSection].filter(Boolean);
+
       gsap.set(logoSectionRef.current, { opacity: 0, y: 30 });
-      gsap.set(sectionsRef.current, { opacity: 0, y: 40 });
+      gsap.set(allSections, { opacity: 0, y: 40 });
       gsap.set(dividerRef.current, { scaleX: 0, transformOrigin: 'left center' });
       gsap.set(bottomBarRef.current, { opacity: 0, y: 20 });
 
@@ -59,7 +61,7 @@ export default function AppFooter() {
         });
 
         // Staggered sections animation
-        tl.to(sectionsRef.current, {
+        tl.to(allSections, {
           opacity: 1,
           y: 0,
           duration: 0.5,
@@ -112,7 +114,8 @@ export default function AppFooter() {
       });
 
       // Social icons hover animations
-      socialIconsRef.current.forEach((icon) => {
+      const socialIcons = footerRef.current?.querySelectorAll(`.${styles.socialIconButton}`) || [];
+      socialIcons.forEach((icon) => {
         if (icon) {
           icon.addEventListener('mouseenter', () => {
             gsap.to(icon, {
@@ -138,14 +141,6 @@ export default function AppFooter() {
     return () => ctx.revert();
   }, []);
 
-  const setSectionRef = (index: number) => (el: HTMLDivElement | null) => {
-    sectionsRef.current[index] = el;
-  };
-
-  const setSocialIconRef = (index: number) => (el: HTMLButtonElement | null) => {
-    socialIconsRef.current[index] = el;
-  };
-
   return (
     <Box component="footer" ref={footerRef} className={styles.footer}>
       <Container maxWidth="lg" className={styles.container}>
@@ -164,7 +159,7 @@ export default function AppFooter() {
           </Box>
 
           {/* Products */}
-          <Box ref={setSectionRef(0)} className={styles.section}>
+          <Box className={styles.section}>
             <Typography variant="subtitle1" className={styles.sectionTitle}>
               Products
             </Typography>
@@ -183,7 +178,7 @@ export default function AppFooter() {
           </Box>
 
           {/* About */}
-          <Box ref={setSectionRef(1)} className={styles.section}>
+          <Box className={styles.section}>
             <Typography variant="subtitle1" className={styles.sectionTitle}>
               About
             </Typography>
@@ -202,7 +197,7 @@ export default function AppFooter() {
           </Box>
 
           {/* Legal */}
-          <Box ref={setSectionRef(2)} className={styles.section}>
+          <Box className={styles.section}>
             <Typography variant="subtitle1" className={styles.sectionTitle}>
               Legal
             </Typography>
@@ -221,7 +216,7 @@ export default function AppFooter() {
           </Box>
 
           {/* Subscribe */}
-          <Box ref={setSectionRef(3)} className={styles.subscribeSection}>
+          <Box className={styles.subscribeSection}>
             <Typography variant="subtitle1" className={styles.sectionTitle}>
               Subscribe
             </Typography>
@@ -261,7 +256,6 @@ export default function AppFooter() {
               (Icon, i) => (
                 <IconButton
                   key={i}
-                  ref={setSocialIconRef(i)}
                   onClick={handleComingSoon}
                   size="small"
                   className={styles.socialIconButton}
