@@ -45,8 +45,8 @@ function ProjectsPage() {
   useLayoutEffect(() => {
 
     const ctx = gsap.context(() => {
-      // Create master timeline for hero entrance
-      const heroTl = gsap.timeline();
+      // Create master timeline for hero entrance with delay to prevent render blocking
+      const heroTl = gsap.timeline({ delay: 0.15 });
 
       // Decorative background animation
       if (decorRef.current) {

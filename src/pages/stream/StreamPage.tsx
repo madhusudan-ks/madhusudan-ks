@@ -60,7 +60,7 @@ function StreamPage() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Create master timeline for hero entrance
-      const heroTl = gsap.timeline();
+      const heroTl = gsap.timeline({ delay: 0.15 });
 
       // Decorative background animation
       if (decorRef.current) {
