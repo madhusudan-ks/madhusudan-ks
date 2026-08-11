@@ -3,7 +3,6 @@ import {
   AccordionSummary,
   AccordionDetails,
   Avatar,
-  Divider,
   List,
   ListItemButton,
   ListItemIcon,
@@ -16,31 +15,26 @@ import {
   Tooltip,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import { useState } from "react";
-import { useAppAuth } from "../../../hooks/useAppAuth";
 
 /**
  * Modern user account profile dropdown/accordion inside topbar and drawer.
  */
 const AccountSection = () => {
-  const { signOut, user } = useAppAuth();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleLogout = async () => {
-    try {
-      await signOut();
-    } catch {
-      // ignore and still force logout
-    }
+  const user = {
+    name: "Guest",
+    email: "Welcome to my portfolio",
+    avatarUrl: "",
   };
 
-  const firstLetter = user?.email?.charAt(0).toUpperCase() || "?";
+  const firstLetter = "G";
 
   if (isMobile) {
     // Small screen → Accordion inside Drawer
@@ -58,11 +52,11 @@ const AccountSection = () => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, minWidth: 0, width: "100%" }}>
-            <Avatar src={user?.avatarUrl} sx={{ width: 32, height: 32, bgcolor: "#3F72AF", flexShrink: 0 }}>
+            <Avatar src={user.avatarUrl} sx={{ width: 32, height: 32, bgcolor: "#3F72AF", flexShrink: 0 }}>
               {firstLetter}
             </Avatar>
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", minWidth: 0, flexGrow: 1 }}>
-              <Tooltip title={user?.name || "Guest"} placement="top-start" enterDelay={500}>
+              <Tooltip title={user.name} placement="top-start" enterDelay={500}>
                 <Typography
                   noWrap
                   variant="subtitle2"
@@ -74,10 +68,10 @@ const AccountSection = () => {
                     width: "100%",
                   }}
                 >
-                  {user?.name || "Guest"}
+                  {user.name}
                 </Typography>
               </Tooltip>
-              <Tooltip title={user?.email || ""} placement="top-start" enterDelay={500}>
+              <Tooltip title={user.email} placement="top-start" enterDelay={500}>
                 <Typography
                   noWrap
                   variant="caption"
@@ -88,7 +82,7 @@ const AccountSection = () => {
                     width: "100%",
                   }}
                 >
-                  {user?.email || ""}
+                  {user.email}
                 </Typography>
               </Tooltip>
             </Box>
@@ -107,13 +101,6 @@ const AccountSection = () => {
                 <Settings fontSize="small" />
               </ListItemIcon>
               <ListItemText primary="Settings" />
-            </ListItemButton>
-            <Divider sx={{ my: 1 }} />
-            <ListItemButton onClick={handleLogout}>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
             </ListItemButton>
           </List>
         </AccordionDetails>
@@ -143,12 +130,12 @@ const AccountSection = () => {
           }
         }}
       >
-        <Avatar src={user?.avatarUrl} sx={{ width: 28, height: 28, bgcolor: "#3F72AF", flexShrink: 0 }}>
+        <Avatar src={user.avatarUrl} sx={{ width: 28, height: 28, bgcolor: "#3F72AF", flexShrink: 0 }}>
           {firstLetter}
         </Avatar>
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left", minWidth: 0 }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, minWidth: 0, maxWidth: { xs: 80, sm: 120, md: 150 } }}>
-            <Tooltip title={user?.name || "Guest"} placement="bottom-start" enterDelay={500}>
+            <Tooltip title={user.name} placement="bottom-start" enterDelay={500}>
               <Typography
                 noWrap
                 variant="subtitle2"
@@ -160,12 +147,12 @@ const AccountSection = () => {
                   width: "100%",
                 }}
               >
-                {user?.name || "Guest"}
+                {user.name}
               </Typography>
             </Tooltip>
             <ExpandMoreIcon sx={{ fontSize: "1rem", color: "#000000", opacity: 0.7, flexShrink: 0 }} />
           </Box>
-          <Tooltip title={user?.email || ""} placement="bottom-start" enterDelay={500}>
+          <Tooltip title={user.email} placement="bottom-start" enterDelay={500}>
             <Typography
               noWrap
               variant="caption"
@@ -177,7 +164,7 @@ const AccountSection = () => {
                 maxWidth: { xs: 80, sm: 110, md: 130 },
               }}
             >
-              {user?.email || ""}
+              {user.email}
             </Typography>
           </Tooltip>
         </Box>
@@ -215,16 +202,10 @@ const AccountSection = () => {
           <Settings fontSize="small" style={{ marginRight: 8 }} />
           Settings
         </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleLogout}>
-          <Logout fontSize="small" style={{ marginRight: 8 }} />
-          Logout
-        </MenuItem>
       </Menu>
     </Box>
   );
 };
 
 export default AccountSection;
-
 
