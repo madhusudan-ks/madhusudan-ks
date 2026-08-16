@@ -67,7 +67,7 @@ const ExperienceTree: React.FC<ExperienceTreeProps> = ({
                       className={`${styles.roleItem} ${r.muted ? styles.muted : ""}`.trim()}
                     >
                       <div className={styles.roleTitle}>
-                        {r.role}  className={styles.roleTitle2}
+                        {r.role}
                         {r.roleType && <span className={styles.roleKind}>{r.roleType}</span>}
                         {r.verified && <span className={styles.badgeVerified} title="Verified">✓</span>}
                         {r.featured && <span className={styles.badgeFeatured} title="Featured">★</span>}
