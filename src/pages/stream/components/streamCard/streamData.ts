@@ -1,81 +1,99 @@
 export interface StreamData {
-    id: string;
-    title: string;
-    description: string;
-    imageUrl: string;
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  author: {
+    name: string;
+    avatar?: string;
+  };
+  publishedDate: {
+    day: string;
+    month: string;
+    year: number;
+  };
+  badge?: string;
+  primaryAction: {
+    label: string;
+    onClick?: () => void;
+  };
+  secondaryAction?: {
+    label: string;
+    onClick?: () => void;
+  };
+}
+
+export const sampleCards: StreamData[] = [
+  {
+    id: '1',
+    title: 'Plan First, Code Later: System Architecture with AI',
+    description: 'Blueprint your logic and let AI handle the boilerplate. System architecture design is your foundational blueprint defining system structure and behavior before coding.',
+    imageUrl: 'https://images.unsplash.com/photo-1558655146-d3934157663c?w=800&h=600&fit=crop',
     author: {
-      name: string;
-      avatar?: string;
-    };
+      name: 'Madhusudan K S',
+      avatar: 'https://i.pravatar.cc/150?img=11' 
+    },
     publishedDate: {
-      day: string;
-      month: string;
-      year: number;
-    };
-    badge?: string;
-    primaryAction: {
-      label: string;
-      onClick?: () => void;
-    };
-    secondaryAction?: {
-      label: string;
-      onClick?: () => void;
-    };
+      day: '2',
+      month: 'Jun',
+      year: 2026
+    },
+    badge: 'Architecture',
+    primaryAction: { label: 'Read More' },
+    secondaryAction: { label: 'Share' }
+  },
+  {
+    id: '2',
+    title: 'Proxy vs Reverse Proxy vs Load Balancer vs API Gateway',
+    description: 'Understand how proxies, reverse proxies, load balancers, and API gateways work together in modern backend architectures. Each layer has a clear responsibility.',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
+    author: {
+      name: 'Madhusudan K S',
+      avatar: 'https://i.pravatar.cc/150?img=11'
+    },
+    publishedDate: {
+      day: '16',
+      month: 'Dec',
+      year: 2025
+    },
+    badge: 'System Design',
+    primaryAction: { label: 'Read More' },
+    secondaryAction: { label: 'Share' }
+  },
+  {
+    id: '3',
+    title: 'Stop Storing JWTs in localStorage: Use HttpOnly Cookies for Secure Authentication',
+    description: 'JWT authentication is great for stateless apps, but only if stored securely. Stop relying on localStorage and switch to HttpOnly cookies to protect against XSS vulnerabilities.',
+    imageUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop',
+    author: {
+      name: 'Madhusudan K S',
+      avatar: 'https://i.pravatar.cc/150?img=11'
+    },
+    publishedDate: {
+      day: '23',
+      month: 'Aug',
+      year: 2025
+    },
+    badge: 'Security',
+    primaryAction: { label: 'Read More' },
+    secondaryAction: { label: 'Share' }
+  },
+  {
+    id: '4',
+    title: 'AI Prompting for Developers: Mastering the Art of Asking Better Questions',
+    description: 'You don’t need to prompt like a prompt engineer. Treat the AI like a helpful teammate—give context, be clear, and collaborate iteratively to code smarter.',
+    imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+    author: {
+      name: 'Madhusudan K S',
+      avatar: 'https://i.pravatar.cc/150?img=11'
+    },
+    publishedDate: {
+      day: '5',
+      month: 'May',
+      year: 2025
+    },
+    badge: 'AI & Dev',
+    primaryAction: { label: 'Read More' },
+    secondaryAction: { label: 'Share' }
   }
-  
-  export const sampleCards: StreamData[] = [
-    {
-      id: '1',
-      title: 'Blog Heading examples include creating a health and wellness blog like',
-      description: 'A comprehensive platform for creative collaboration and project management. Connect with teams, share ideas, and bring your vision to life. A comprehensive platform for creative collaboration and project management. Connect with teams, share ideas, and bring your',
-      imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
-      author: {
-        name: 'Sarah Johnson',
-        avatar: 'https://i.pravatar.cc/150?img=1' 
-      },
-      publishedDate: {
-        day: '21',
-        month: 'Nov',
-        year: 2025
-      },
-      badge: 'NEW',
-      primaryAction: { label: 'MORE' },
-      secondaryAction: { label: 'Share' }
-    },
-    {
-      id: '2',
-      title: 'Design System Best Practices',
-      description: 'Build beautiful, consistent user interfaces with our comprehensive design tokens and component library. Perfect for modern web applications.',
-      imageUrl: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=600&fit=crop',
-      author: {
-        name: 'Michael Chen',
-        avatar: 'https://i.pravatar.cc/150?img=12'
-      },
-      publishedDate: {
-        day: '21',
-        month: 'Oct',
-        year: 2025
-      },
-      badge: 'Popular',
-      primaryAction: { label: 'MORE' },
-      secondaryAction: { label: 'Share' }
-    },
-    {
-      id: '3',
-      title: 'Stream 3 Title',
-      description: 'Build beautiful, consistent user interfaces with our comprehensive design tokens and component library. Perfect for modern web applications.',
-      imageUrl: 'https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=600&fit=crop',
-      author: {
-        name: 'Michael Chen',
-        avatar: 'https://i.pravatar.cc/150?img=12'
-      },
-      publishedDate: {
-        day: '21',
-        month: 'Oct',
-        year: 2025
-      },
-      badge: 'NEW',
-      primaryAction: { label: 'MORE' },
-      secondaryAction: { label: 'Share' }
-    }
-  ];
+];
