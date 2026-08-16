@@ -28,7 +28,8 @@ export const sampleCards: StreamData[] = [
     id: '1',
     title: 'Plan First, Code Later: System Architecture with AI',
     description: 'Blueprint your logic and let AI handle the boilerplate. System architecture design is your foundational blueprint defining system structure and behavior before coding.',
-    imageUrl: 'https://images.unsplash.com/photo-1558655146-d3934157663c?w=800&h=600&fit=crop',
+    // Updated with a verified working image URL
+    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=600&fit=crop',
     author: {
       name: 'Madhusudan K S',
       avatar: 'https://i.pravatar.cc/150?img=11' 
