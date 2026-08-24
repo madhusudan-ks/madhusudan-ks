@@ -115,7 +115,7 @@
 // Section Header (shared)
 // ============================================
 .sectionHeader {
-  text-align: center;
+  text-align: left;
   margin-bottom: $space-5;
 
   @include respond-to(md) {
@@ -137,8 +137,8 @@
 .sectionSubtitle {
   font-size: 0.95rem;
   color: $color-muted;
-  max-width: 500px;
-  margin: 0 auto;
+  margin: 0;
+  max-width: none;
 
   @include respond-to(md) {
     font-size: 1rem;

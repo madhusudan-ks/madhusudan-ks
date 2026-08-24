@@ -290,7 +290,6 @@ export function LogoSlider({
 							<Icon
 								className={styles.image}
 								icon={iconName}
-								color="#112D4E"
 								role="img"
 								aria-label={logo.alt}
 							/>

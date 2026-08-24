@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
 import SharedHero from "../../components/common/hero/SharedHero";
 import StreamCard from "./components/streamCard/StreamCard";
-import { sampleCards } from "./components/streamCard/streamData";
+import { sampleCards } from "../../backend/streamData";
 import styles from "./streamPage.module.scss";
 
 // Register ScrollTrigger plugin

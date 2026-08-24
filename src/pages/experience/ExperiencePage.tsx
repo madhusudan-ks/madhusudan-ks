@@ -5,8 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
 import SharedHero from "../../components/common/hero/SharedHero";
 import ExperienceTree from "./components/experienceTree/ExperienceTree";
-import { experienceGroups } from "./components/experienceTree/experienceData";
-import type { ExperienceCompany, ExperienceItem } from "./components/experienceTree/experienceData";
+import { experienceGroups } from "../../backend/experienceData";
+import type { ExperienceCompany, ExperienceItem } from "../../backend/experienceData";
 import styles from "./experiencePage.module.scss";
 
 // Register ScrollTrigger plugin

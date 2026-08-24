@@ -5,9 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "@iconify/react";
 import SharedHero from "../../components/common/hero/SharedHero";
 import LogoSlider from "../../components/common/logoSlider/LogoSlider";
-import teckStackLogo from "../../constants/teckStackLogo.json";
+import teckStackLogo from "../../backend/teckStackLogo.json";
 import ProjectAccordion from "./components/projectAccordion/ProjectAccordion";
-import { sampleProjects } from "./components/projectAccordion/projectData";
+import { sampleProjects } from "../../backend/projectData";
 import styles from "./projectsPage.module.scss";
 
 // Register ScrollTrigger plugin

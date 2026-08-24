@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 import gsap from 'gsap';
 import styles from './streamCard.module.scss';
-import type { StreamData } from './streamData';
+import type { StreamData } from '../../../../backend/streamData';
 import AppButton from '../../../../components/common/button/AppButton';
 
 interface StreamCardProps {

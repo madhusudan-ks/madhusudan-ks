@@ -156,6 +156,8 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
+  text-align: left;
+  width: 100%;
 
   @include respond-to(md) {
     font-size: 0.9375rem;
@@ -202,6 +204,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-2;
+  text-align: left;
 }
 
 .descriptionItem {
@@ -218,6 +221,7 @@
   line-height: 1.7;
   font-size: 0.9375rem;
   margin: 0;
+  text-align: left;
 
   @include respond-to(md) {
     font-size: 1rem;
@@ -238,7 +242,7 @@
   padding: $space-2 $space-4;
   border-radius: $radius-sm;
   background-color: $color-primary;
-  color: $color-white;
+  color: $color-background;
   transition: all $transition-base;
   text-decoration: none;
   border: none;
@@ -259,12 +263,12 @@
 
   svg {
     font-size: 1.125rem;
-    color: $color-white;
+    color: $color-background;
   }
 }
 
 .linkText {
-  color: $color-white !important;
+  color: $color-background !important;
   font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.02em;

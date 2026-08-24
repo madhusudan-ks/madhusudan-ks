@@ -11,7 +11,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
-import { sampleProjects, type ProjectData } from "./projectData";
+import { sampleProjects, type ProjectData } from "../../../../backend/projectData";
 import styles from "./projectAccordion.module.scss";
 
 interface ProjectAccordionProps {

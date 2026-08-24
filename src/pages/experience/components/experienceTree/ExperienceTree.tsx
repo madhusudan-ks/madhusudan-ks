@@ -1,6 +1,6 @@
 import React from "react";
-import type { ExperienceItem, ExperienceCompany } from "./experienceData";
-import { experienceGroups } from "./experienceData";
+import type { ExperienceItem, ExperienceCompany } from "../../../../backend/experienceData";
+import { experienceGroups } from "../../../../backend/experienceData";
 import styles from "./experienceTree.module.scss";
 
 type ExperienceTreeProps = {
